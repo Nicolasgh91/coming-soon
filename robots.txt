@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://peerlog.org/sitemap.xml
