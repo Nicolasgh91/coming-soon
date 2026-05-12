@@ -40,43 +40,6 @@ The current repository is a static landing page built with:
 
 Future versions may evolve into a Next.js, React, TypeScript, and Tailwind CSS application.
 
-## SEO and Indexing
-
-Primary domain:
-- https://peerlog.org
-
-Initial indexing goals:
-- establish domain authority,
-- expose brand signals,
-- create crawlable metadata,
-- and prepare future product pages.
-
-The repository includes:
-- `index.html` with crawlable metadata,
-- `robots.txt` to allow search engine crawling,
-- `sitemap.xml` to expose the canonical public URL.
-
-## Planned Features
-
-- Talent repositories
-- Recruiting workflows
-- Community spaces
-- Candidate evaluation systems
-- Notifications and activity feeds
-- Role-aware dashboards
-
-## Repository Structure
-
-```bash
-.
-├── index.html
-├── robots.txt
-├── sitemap.xml
-├── assets
-│   ├── avatars
-│   └── brand
-└── README.md
-```
 
 ## Credits
 
