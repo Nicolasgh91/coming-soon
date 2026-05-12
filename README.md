@@ -56,6 +56,6 @@ OpenPeeps illustrations are licensed under Creative Commons Attribution 4.0 Inte
 
 ## License
 
-The source code in this repository is licensed under the MIT License.
+Source code is licensed under the MIT License.
 
-Third-party assets may have separate licenses. See `THIRD_PARTY_LICENSES.md` for attribution and license details.
+Some visual assets are licensed separately. See [Third Party Licenses](./THIRD_PARTY_LICENSES.md).
