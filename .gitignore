@@ -1,3 +1,5 @@
+docs
+docs/
 # wrangler files
 .wrangler
 .dev.vars*
