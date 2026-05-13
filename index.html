@@ -8,6 +8,8 @@
   <meta name="keywords" content="Peerlog, talent communities, recruiting workflows, talent discovery, professional collaboration, hiring workflows, candidate evaluation, community platform, recruiting platform, talent platform" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://peerlog.org/" />
+  <link rel="icon" type="image/png" href="./assets/brand/favicon.png" />
+  <link rel="apple-touch-icon" href="./assets/brand/favicon.png" />
   <meta property="og:title" content="Peerlog - Talent Communities, Recruiting Workflows, and Professional Collaboration" />
   <meta property="og:description" content="Peerlog is building a modern workspace for talent communities, recruiting workflows, and professional collaboration." />
   <meta property="og:url" content="https://peerlog.org/" />
@@ -164,8 +166,9 @@
     html.dark .logo-light { display: none; }
     html.dark .logo-dark { display: block; }
     html.dark .social-link { background: color-mix(in oklch, var(--bg-surface) 65%, transparent); }
+    html.dark .social-link img { mix-blend-mode: normal; filter: invert(1) hue-rotate(180deg); }
     html.dark .avatar { border-color: var(--border-default); background: var(--bg-surface); }
-    @media (prefers-reduced-motion: reduce) { .auth-float, .auth-fade-up, .auth-glow-pulse, .social-link, .social-link svg { animation: none; transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .auth-float, .auth-fade-up, .auth-glow-pulse, .social-link, .social-link svg, .social-link img { animation: none; transition: none; } }
   </style>
 </head>
 <body>
