@@ -3,6 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('peerlog.theme') || 'system';
+        document.documentElement.setAttribute('data-theme-pref', pref);
+        if (pref === 'dark') document.documentElement.classList.add('dark');
+        else if (pref === 'light') document.documentElement.classList.add('light');
+        var lang = localStorage.getItem('peerlog.lang');
+        if (!lang) { var n = (navigator.language || 'es').toLowerCase(); lang = n.startsWith('en') ? 'en' : 'es'; }
+        document.documentElement.setAttribute('lang', lang);
+      } catch (e) {}
+    })();
+  </script>
   <title>Peerlog - Practical knowledge deserves a place. Peerlog is building it.</title>
   <meta name="description" content="Practical knowledge deserves a place. Peerlog is building it." />
   <meta name="keywords" content="Peerlog, practical knowledge, professional knowledge, applied learning, professional collaboration, knowledge sharing, professional community, learning platform" />
@@ -93,6 +106,22 @@
       --success: oklch(0.792 0.209 151.711);
     }
 
+    /* Force light when user picks "light" but OS is dark */
+    html.light {
+      --bg-canvas: var(--primitive-stone-50);
+      --bg-surface: var(--primitive-white);
+      --bg-surface-alt: var(--primitive-stone-100);
+      --border-subtle: var(--primitive-stone-200);
+      --border-default: var(--primitive-stone-300);
+      --border-strong: var(--primitive-stone-900);
+      --text-primary: var(--primitive-stone-900);
+      --text-secondary: var(--primitive-stone-600);
+      --text-tertiary: var(--primitive-stone-500);
+      --action-primary: var(--primitive-violet-700);
+      --focus-ring: oklch(0.491 0.27 292.581 / 0.35);
+      --success: var(--primitive-green-600);
+    }
+
     * { box-sizing: border-box; }
     html { min-height: 100%; background: var(--bg-canvas); }
     body { min-height: 100%; margin: 0; background: var(--bg-canvas); color: var(--text-primary); font-family: "Geist", Inter, "Inter Fallback", system-ui, sans-serif; }
@@ -120,12 +149,24 @@
     .dot-8 { bottom: 16%; right: 10%; width: 0.75rem; height: 0.75rem; background: oklch(0.491 0.27 292.581 / 0.30); }
     .section { position: relative; z-index: 10; display: flex; min-height: 100vh; width: 100%; max-width: 64rem; align-items: center; margin: 0 auto; padding: 2rem 1rem; }
     .stage { position: relative; width: 100%; display: flex; flex-direction: column; }
-    .topbar { display: flex; justify-content: flex-start; align-items: center; margin-bottom: 1rem; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 10px; }
     .pill { display: inline-flex; align-items: center; gap: 6px; background: color-mix(in oklch, var(--bg-surface) 80%, transparent); border: 1px solid color-mix(in oklch, var(--border-subtle) 70%, transparent); border-radius: 999px; padding: 5px 10px 5px 8px; font-size: 11px; font-weight: 500; color: var(--text-secondary); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
     .live-dot { width: 6px; height: 6px; background: var(--brand-primary); border-radius: 50%; animation: live-pulse 1.8s ease-in-out infinite; flex-shrink: 0; }
     @keyframes live-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+    .toggles { display: flex; gap: 4px; background: color-mix(in oklch, var(--bg-surface) 80%, transparent); border: 1px solid color-mix(in oklch, var(--border-subtle) 70%, transparent); border-radius: 999px; padding: 4px; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+    .toggle-btn { appearance: none; background: transparent; border: none; color: var(--text-primary); width: 36px; height: 30px; border-radius: 999px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: "Geist", sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.15s ease; padding: 0; }
+    .toggle-btn:hover { background: color-mix(in oklch, var(--border-subtle) 60%, transparent); }
+    .toggle-btn:active { transform: scale(0.92); }
+    .toggle-btn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+    .toggle-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .toggle-lang { background: var(--text-primary); color: var(--bg-surface); }
+    .toggle-lang:hover { background: var(--text-primary); opacity: 0.85; }
+    .theme-icon { display: none; }
+    [data-theme-pref="light"] .theme-icon.icon-light { display: block; }
+    [data-theme-pref="dark"] .theme-icon.icon-dark { display: block; }
+    [data-theme-pref="system"] .theme-icon.icon-system { display: block; }
     .panel { position: relative; width: 100%; overflow: hidden; border: 1px solid color-mix(in oklch, var(--border-subtle) 40%, transparent); border-radius: 2.2rem; background: color-mix(in oklch, var(--bg-surface) 60%, transparent); padding: 1.5rem; box-shadow: 0 24px 64px oklch(0.22 0.01 80 / 0.12); -webkit-backdrop-filter: blur(40px); backdrop-filter: blur(40px); }
-.panel-gradient, .panel-grid { pointer-events: none; position: absolute; inset: 0; }
+    .panel-gradient, .panel-grid { pointer-events: none; position: absolute; inset: 0; }
     .panel-gradient { background: linear-gradient(150deg, oklch(0.97 0.02 90 / 0.35), transparent 48%, oklch(0.74 0.13 72 / 0.14)); }
     .panel-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.72 0.03 84) 1px, transparent 1px), linear-gradient(0deg, oklch(0.72 0.03 84) 1px, transparent 1px); background-size: 36px 36px; }
     .content { position: relative; z-index: 10; display: flex; max-width: 46rem; flex-direction: column; align-items: center; margin: 0 auto; padding-bottom: 0; text-align: center; }
@@ -196,6 +237,22 @@
     html.dark .social-link { background: color-mix(in oklch, var(--bg-surface) 65%, transparent); }
     html.dark .social-link img { mix-blend-mode: normal; filter: invert(1) hue-rotate(180deg); }
     html.dark .avatar { border-color: var(--border-default); background: var(--bg-surface); }
+    /* html.light overrides — beat the dark media query when user forces light */
+    html.light .base-gradient { background: linear-gradient(135deg, oklch(0.97 0.01 85), oklch(0.95 0.02 80) 45%, oklch(0.99 0.01 90)); }
+    html.light .glow-orange { background: oklch(0.705 0.213 47.604 / 0.12); }
+    html.light .glow-violet { background: oklch(0.491 0.27 292.581 / 0.10); }
+    html.light .glow-green { background: oklch(0.627 0.194 149.214 / 0.10); }
+    html.light .shape-orange { box-shadow: 8px 10px 0 oklch(0.22 0.01 80 / 0.16); }
+    html.light .shape-violet { box-shadow: 8px 10px 0 oklch(0.22 0.01 80 / 0.14); }
+    html.light .page-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.7 0.03 82) 1px, transparent 1px), linear-gradient(0deg, oklch(0.7 0.03 82) 1px, transparent 1px); }
+    html.light .panel { background: color-mix(in oklch, var(--bg-surface) 60%, transparent); box-shadow: 0 24px 64px oklch(0.22 0.01 80 / 0.12); }
+    html.light .panel-gradient { background: linear-gradient(150deg, oklch(0.97 0.02 90 / 0.35), transparent 48%, oklch(0.74 0.13 72 / 0.14)); }
+    html.light .panel-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.72 0.03 84) 1px, transparent 1px), linear-gradient(0deg, oklch(0.72 0.03 84) 1px, transparent 1px); }
+    html.light .logo-light { display: block; }
+    html.light .logo-dark { display: none; }
+    html.light .social-link { background: color-mix(in oklch, var(--bg-surface-alt) 70%, transparent); }
+    html.light .social-link img { mix-blend-mode: normal; filter: none; }
+    html.light .avatar { border-color: var(--border-strong); background: color-mix(in oklch, var(--bg-surface) 80%, transparent); }
     @media (prefers-reduced-motion: reduce) { .auth-float, .auth-fade-up, .auth-glow-pulse, .reveal, .live-dot, .social-link, .social-link::before, .social-link::after, .social-link svg, .social-link img { animation: none; transition: none; } .reveal { opacity: 1; transform: none; } }
   </style>
 </head>
@@ -208,7 +265,17 @@
     <section class="section">
       <div class="stage">
         <div class="topbar reveal d1">
-          <span class="pill"><span class="live-dot"></span>Próximamente · 2026</span>
+          <span class="pill"><span class="live-dot"></span><span data-i18n="status">Próximamente · 2026</span></span>
+          <div class="toggles" role="group" aria-label="Preferencias">
+            <button type="button" class="toggle-btn toggle-theme" id="theme-btn" aria-label="Tema: sistema">
+              <svg class="theme-icon icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+              <svg class="theme-icon icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <svg class="theme-icon icon-system" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </button>
+            <button type="button" class="toggle-btn toggle-lang" id="lang-btn" aria-label="Cambiar idioma">
+              <span id="lang-label">ES</span>
+            </button>
+          </div>
         </div>
         <div class="panel auth-fade-up">
           <div class="panel-gradient" aria-hidden="true"></div><div class="panel-grid" aria-hidden="true"></div>
@@ -218,19 +285,136 @@
             <div class="message-frame">
               <span class="brand-logo"><img class="logo-light" src="./assets/brand/logo-horizontal.svg" alt="Peerlog" width="1500" height="750" /><img class="logo-dark" src="./assets/brand/logo-horizontal-dark.svg" alt="Peerlog" width="1500" height="750" /></span>
               <div>
-                <h1><span class="headline-primary">El <span class="headline-accent">conocimiento</span> práctico merece <span class="headline-underline">un lugar.</span></span><span class="headline-secondary">Peerlog lo está <span class="headline-chip">construyendo</span></span></h1>
+                <h1 data-i18n-html="headline"><span class="headline-primary">El <span class="headline-accent">conocimiento</span> práctico merece <span class="headline-underline">un lugar.</span></span><span class="headline-secondary">Peerlog lo está <span class="headline-chip">construyendo</span></span></h1>
                 <div class="divider" aria-hidden="true"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-dot"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
-                <p class="copy">Seguinos para no perderte el lanzamiento.</p>
+                <p class="copy" data-i18n="tagline">Seguinos para no perderte el lanzamiento.</p>
               </div>
             </div>
           </div>
         </div>
         <div class="social-section reveal d2">
-          <div class="social-label">Donde estamos</div>
-          <div class="socials"><a class="social-link" href="#" aria-label="Peerlog - Próximamente..." aria-disabled="true" data-tooltip="Próximamente..." onclick="return false;"><svg viewBox="311 311 400 400" fill="currentColor" aria-hidden="true"><path d="M492.1 377c-16.7 2.3-30.2 9.1-42.7 21.5-10.2 10.1-15.6 18.7-20.1 32-2.5 7.3-2.7 9.4-2.7 23 0 13.5.3 15.8 2.6 22.7 3.8 11.4 9.3 20.5 16.8 27.9 14.3 14.1 34 19.4 47.6 12.8 6.6-3.1 9.1-7.2 12-19 3.2-12.9 7.2-20.7 14.4-28 8.3-8.4 18.2-13 32-14.9 10.2-1.4 12.8-2.6 15.1-7.1 2.3-4.7 2.5-14.9.4-22.9-4.4-16.8-17.9-33.2-33.5-40.8-4.7-2.3-11-4.8-14-5.6-7.6-1.9-20.2-2.6-27.9-1.6m69.3 95c-19.3 5-36.1 19-40.4 33.7-2.1 6.9-.3 11 8.1 18.5 14.3 12.6 19.4 23.4 18.7 38.9-.4 8.3-.8 9.6-5.1 18.2-2.6 5-4.7 10.5-4.7 12 0 9.3 12.1 18.6 30 23.3 7.8 2.1 23.2 2.3 31 .5 6.4-1.6 18.1-6.7 23.6-10.5 15.2-10.3 26.9-28.4 31.1-48 1.8-8.5 1.3-24-1.2-33.1-7-26-28-46.9-54-53.5-10.3-2.6-27.1-2.7-37.1 0"/><path d="M411.5 505.9c-13.1 3.4-27.8 16.8-35.5 32.5-4.4 9-7 20.4-7 30.8 0 32 20.3 59.8 51.2 70.3 10.7 3.7 30.2 4.6 41.2 2.1 24.6-5.8 45.5-22.9 56-45.8 9.9-21.5 8.5-44.6-3.6-58.3-6.6-7.6-14.4-8.8-23-3.4-14.8 9-30.6 9.2-44.3.5-6.4-4.2-11.2-9.5-16.4-18.5-5.3-9-11-12.1-18.6-10.2"/></svg></a><a class="social-link" href="https://www.linkedin.com/company/peerlog-org/" target="_blank" rel="noreferrer noopener" aria-label="Seguir a Peerlog en LinkedIn" data-tooltip="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a class="social-link" href="#" aria-label="Seguir a Peerlog en Instagram" data-tooltip="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a><a class="social-link" href="#" aria-label="Seguir a Peerlog en X" data-tooltip="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a></div>
+          <div class="social-label" data-i18n="socialLabel">Donde estamos</div>
+          <div class="socials">
+            <a id="social-peerlog" class="social-link" href="#" aria-label="Peerlog - Próximamente..." aria-disabled="true" data-tooltip="Próximamente..." onclick="return false;"><svg viewBox="311 311 400 400" fill="currentColor" aria-hidden="true"><path d="M492.1 377c-16.7 2.3-30.2 9.1-42.7 21.5-10.2 10.1-15.6 18.7-20.1 32-2.5 7.3-2.7 9.4-2.7 23 0 13.5.3 15.8 2.6 22.7 3.8 11.4 9.3 20.5 16.8 27.9 14.3 14.1 34 19.4 47.6 12.8 6.6-3.1 9.1-7.2 12-19 3.2-12.9 7.2-20.7 14.4-28 8.3-8.4 18.2-13 32-14.9 10.2-1.4 12.8-2.6 15.1-7.1 2.3-4.7 2.5-14.9.4-22.9-4.4-16.8-17.9-33.2-33.5-40.8-4.7-2.3-11-4.8-14-5.6-7.6-1.9-20.2-2.6-27.9-1.6m69.3 95c-19.3 5-36.1 19-40.4 33.7-2.1 6.9-.3 11 8.1 18.5 14.3 12.6 19.4 23.4 18.7 38.9-.4 8.3-.8 9.6-5.1 18.2-2.6 5-4.7 10.5-4.7 12 0 9.3 12.1 18.6 30 23.3 7.8 2.1 23.2 2.3 31 .5 6.4-1.6 18.1-6.7 23.6-10.5 15.2-10.3 26.9-28.4 31.1-48 1.8-8.5 1.3-24-1.2-33.1-7-26-28-46.9-54-53.5-10.3-2.6-27.1-2.7-37.1 0"/><path d="M411.5 505.9c-13.1 3.4-27.8 16.8-35.5 32.5-4.4 9-7 20.4-7 30.8 0 32 20.3 59.8 51.2 70.3 10.7 3.7 30.2 4.6 41.2 2.1 24.6-5.8 45.5-22.9 56-45.8 9.9-21.5 8.5-44.6-3.6-58.3-6.6-7.6-14.4-8.8-23-3.4-14.8 9-30.6 9.2-44.3.5-6.4-4.2-11.2-9.5-16.4-18.5-5.3-9-11-12.1-18.6-10.2"/></svg></a>
+            <a id="social-linkedin" class="social-link" href="https://www.linkedin.com/company/peerlog-org/" target="_blank" rel="noreferrer noopener" aria-label="Seguir a Peerlog en LinkedIn" data-tooltip="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+            <a id="social-instagram" class="social-link" href="#" aria-label="Seguir a Peerlog en Instagram" data-tooltip="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
+            <a id="social-x" class="social-link" href="#" aria-label="Seguir a Peerlog en X" data-tooltip="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
+  <script>
+    const LANGS = ['es', 'en'];
+    const THEMES = ['system', 'light', 'dark'];
+    const dict = {
+      es: {
+        status: 'Próximamente · 2026',
+        headline: '<span class="headline-primary">El <span class="headline-accent">conocimiento</span> práctico merece <span class="headline-underline">un lugar.</span></span><span class="headline-secondary">Peerlog lo está <span class="headline-chip">construyendo</span></span>',
+        tagline: 'Seguinos para no perderte el lanzamiento.',
+        socialLabel: 'Donde estamos',
+        socialPeerlog: { label: 'Peerlog - Próximamente...', tooltip: 'Próximamente...' },
+        socialLinkedin: { label: 'Seguir a Peerlog en LinkedIn', tooltip: 'LinkedIn' },
+        socialInstagram: { label: 'Seguir a Peerlog en Instagram', tooltip: 'Instagram' },
+        socialX: { label: 'Seguir a Peerlog en X', tooltip: 'X' },
+        themeLabel: { light: 'Tema: claro', dark: 'Tema: oscuro', system: 'Tema: sistema' },
+        langLabel: 'Switch to English',
+        docTitle: 'Peerlog — pronto',
+      },
+      en: {
+        status: 'Coming soon · 2026',
+        headline: '<span class="headline-primary">Practical <span class="headline-accent">knowledge</span> deserves <span class="headline-underline">a place.</span></span><span class="headline-secondary">Peerlog is <span class="headline-chip">building it</span></span>',
+        tagline: 'Follow us so you don’t miss the launch.',
+        socialLabel: 'Find us',
+        socialPeerlog: { label: 'Peerlog — Coming soon...', tooltip: 'Coming soon...' },
+        socialLinkedin: { label: 'Follow Peerlog on LinkedIn', tooltip: 'LinkedIn' },
+        socialInstagram: { label: 'Follow Peerlog on Instagram', tooltip: 'Instagram' },
+        socialX: { label: 'Follow Peerlog on X', tooltip: 'X' },
+        themeLabel: { light: 'Theme: light', dark: 'Theme: dark', system: 'Theme: system' },
+        langLabel: 'Cambiar a Español',
+        docTitle: 'Peerlog — coming soon',
+      },
+    };
+
+    const root = document.documentElement;
+    const STORAGE = { lang: 'peerlog.lang', theme: 'peerlog.theme' };
+
+    function getLang() {
+      const saved = localStorage.getItem(STORAGE.lang);
+      if (saved && LANGS.includes(saved)) return saved;
+      const nav = (navigator.language || 'es').toLowerCase();
+      return nav.startsWith('en') ? 'en' : 'es';
+    }
+
+    function setLang(lang) {
+      if (!LANGS.includes(lang)) return;
+      localStorage.setItem(STORAGE.lang, lang);
+      root.setAttribute('lang', lang);
+      applyI18n(lang);
+    }
+
+    function applyI18n(lang) {
+      const t = dict[lang] || dict.es;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] != null) el.textContent = t[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (t[key] != null) el.innerHTML = t[key];
+      });
+      const socials = {
+        'social-peerlog': t.socialPeerlog,
+        'social-linkedin': t.socialLinkedin,
+        'social-instagram': t.socialInstagram,
+        'social-x': t.socialX,
+      };
+      for (const [id, val] of Object.entries(socials)) {
+        const el = document.getElementById(id);
+        if (el) { el.setAttribute('aria-label', val.label); el.setAttribute('data-tooltip', val.tooltip); }
+      }
+      document.getElementById('lang-label').textContent = lang.toUpperCase();
+      document.getElementById('lang-btn').setAttribute('aria-label', t.langLabel);
+      document.title = t.docTitle;
+      updateThemeLabel(lang);
+    }
+
+    function getThemePref() {
+      const saved = localStorage.getItem(STORAGE.theme);
+      return THEMES.includes(saved) ? saved : 'system';
+    }
+
+    function setThemePref(pref) {
+      if (!THEMES.includes(pref)) return;
+      localStorage.setItem(STORAGE.theme, pref);
+      root.setAttribute('data-theme-pref', pref);
+      root.classList.remove('dark', 'light');
+      if (pref === 'dark') root.classList.add('dark');
+      else if (pref === 'light') root.classList.add('light');
+      updateThemeLabel(getLang());
+    }
+
+    function updateThemeLabel(lang) {
+      const t = dict[lang] || dict.es;
+      const pref = getThemePref();
+      document.getElementById('theme-btn').setAttribute('aria-label', t.themeLabel[pref]);
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (getThemePref() === 'system') root.setAttribute('data-theme-pref', 'system');
+    });
+
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const next = THEMES[(THEMES.indexOf(getThemePref()) + 1) % THEMES.length];
+      setThemePref(next);
+    });
+
+    document.getElementById('lang-btn').addEventListener('click', () => {
+      setLang(getLang() === 'es' ? 'en' : 'es');
+    });
+
+    applyI18n(getLang());
+  </script>
 </body>
 </html>
