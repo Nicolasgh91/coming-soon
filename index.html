@@ -25,6 +25,9 @@
   <meta name="twitter:description" content="Practical knowledge deserves a place. Peerlog is building it." />
   <meta name="twitter:image" content="https://peerlog.org/assets/brand/og-image-v2.png" />
   <meta name="twitter:image:alt" content="Peerlog - Practical knowledge deserves a place. Peerlog is building it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primitive-white: oklch(1 0 0);
@@ -92,7 +95,7 @@
 
     * { box-sizing: border-box; }
     html { min-height: 100%; background: var(--bg-canvas); }
-    body { min-height: 100%; margin: 0; background: var(--bg-canvas); color: var(--text-primary); font-family: Inter, "Inter Fallback", system-ui, sans-serif; }
+    body { min-height: 100%; margin: 0; background: var(--bg-canvas); color: var(--text-primary); font-family: "Geist", Inter, "Inter Fallback", system-ui, sans-serif; }
     .page { position: relative; min-height: 100vh; overflow: hidden; background: var(--bg-canvas); color: var(--text-primary); }
     .background { pointer-events: none; position: absolute; inset: 0; }
     .base-gradient { position: absolute; inset: 0; background: linear-gradient(135deg, oklch(0.97 0.01 85), oklch(0.95 0.02 80) 45%, oklch(0.99 0.01 90)); }
@@ -103,7 +106,7 @@
     .shape { position: absolute; display: block; border-style: solid; transform-origin: center; }
     .shape-orange { left: -2.5rem; top: 6.5rem; width: 7rem; height: 4.25rem; transform: rotate(-8deg); border-width: 1px; border-color: var(--border-strong); border-radius: 1.35rem; background: oklch(0.705 0.213 47.604 / 0.10); box-shadow: 8px 10px 0 oklch(0.22 0.01 80 / 0.16); }
     .shape-violet { right: -3.5rem; bottom: 4.75rem; width: 8.5rem; height: 4.25rem; transform: rotate(-5deg); border-width: 1px; border-color: var(--border-default); border-radius: 9999px; background: oklch(0.491 0.27 292.581 / 0.10); box-shadow: 8px 10px 0 oklch(0.22 0.01 80 / 0.14); }
-    .page-grid { position: absolute; inset: 0; opacity: 0.2; background-image: linear-gradient(90deg, oklch(0.7 0.03 82) 1px, transparent 1px), linear-gradient(0deg, oklch(0.7 0.03 82) 1px, transparent 1px); background-size: 42px 42px; }
+    .page-grid { position: absolute; inset: 0; opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.7 0.03 82) 1px, transparent 1px), linear-gradient(0deg, oklch(0.7 0.03 82) 1px, transparent 1px); background-size: 40px 40px; }
     .float-element { position: absolute; z-index: 1; }
     .rounded-full { border-radius: 9999px; }
     .diamond { transform: rotate(45deg); }
@@ -115,23 +118,36 @@
     .dot-6 { right: 18%; top: 70%; width: 0.625rem; height: 0.625rem; background: oklch(0.553 0.013 58.071 / 0.35); }
     .dot-7 { bottom: 21%; left: 22%; width: 0.625rem; height: 0.625rem; background: oklch(0.705 0.213 47.604 / 0.40); }
     .dot-8 { bottom: 16%; right: 10%; width: 0.75rem; height: 0.75rem; background: oklch(0.491 0.27 292.581 / 0.30); }
-    .section { position: relative; z-index: 10; display: flex; min-height: 100vh; width: 100%; max-width: 64rem; align-items: center; margin: 0 auto; padding: 3.5rem 1rem; }
-    .stage { position: relative; width: 100%; }
+    .section { position: relative; z-index: 10; display: flex; min-height: 100vh; width: 100%; max-width: 64rem; align-items: center; margin: 0 auto; padding: 2rem 1rem; }
+    .stage { position: relative; width: 100%; display: flex; flex-direction: column; }
+    .topbar { display: flex; justify-content: flex-start; align-items: center; margin-bottom: 1rem; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; background: color-mix(in oklch, var(--bg-surface) 80%, transparent); border: 1px solid color-mix(in oklch, var(--border-subtle) 70%, transparent); border-radius: 999px; padding: 5px 10px 5px 8px; font-size: 11px; font-weight: 500; color: var(--text-secondary); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+    .live-dot { width: 6px; height: 6px; background: var(--brand-primary); border-radius: 50%; animation: live-pulse 1.8s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes live-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
     .panel { position: relative; width: 100%; overflow: hidden; border: 1px solid color-mix(in oklch, var(--border-subtle) 40%, transparent); border-radius: 2.2rem; background: color-mix(in oklch, var(--bg-surface) 60%, transparent); padding: 1.5rem; box-shadow: 0 24px 64px oklch(0.22 0.01 80 / 0.12); -webkit-backdrop-filter: blur(40px); backdrop-filter: blur(40px); }
-    .panel-gradient, .panel-grid { pointer-events: none; position: absolute; inset: 0; }
+.panel-gradient, .panel-grid { pointer-events: none; position: absolute; inset: 0; }
     .panel-gradient { background: linear-gradient(150deg, oklch(0.97 0.02 90 / 0.35), transparent 48%, oklch(0.74 0.13 72 / 0.14)); }
-    .panel-grid { opacity: 0.12; background-image: linear-gradient(90deg, oklch(0.72 0.03 84) 1px, transparent 1px), linear-gradient(0deg, oklch(0.72 0.03 84) 1px, transparent 1px); background-size: 36px 36px; }
-    .content { position: relative; z-index: 10; display: flex; max-width: 46rem; flex-direction: column; align-items: center; margin: 0 auto; padding-bottom: 2.5rem; text-align: center; }
-    .message-frame { position: relative; z-index: 10; display: flex; width: 100%; max-width: 42rem; flex-direction: column; align-items: center; gap: 2.5rem; padding: 4rem 0.75rem 4.5rem; }
-    .brand-logo { position: relative; display: inline-flex; height: 4rem; width: auto; flex-shrink: 0; overflow: hidden; }
+    .panel-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.72 0.03 84) 1px, transparent 1px), linear-gradient(0deg, oklch(0.72 0.03 84) 1px, transparent 1px); background-size: 36px 36px; }
+    .content { position: relative; z-index: 10; display: flex; max-width: 46rem; flex-direction: column; align-items: center; margin: 0 auto; padding-bottom: 0; text-align: center; }
+    .message-frame { position: relative; z-index: 10; display: flex; width: 100%; max-width: 42rem; flex-direction: column; align-items: center; gap: 1.75rem; padding: 2rem 0.75rem; }
+    .brand-logo { position: relative; display: inline-flex; height: 5rem; width: auto; flex-shrink: 0; overflow: hidden; }
     .brand-logo img { height: 100%; width: auto; object-fit: contain; }
     .logo-dark { display: none; }
-    h1 { margin: 0; color: var(--text-primary); font-weight: 400; line-height: 1.18; text-wrap: balance; }
+    h1 { margin: 0; color: var(--text-primary); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 400; line-height: 1.18; text-wrap: balance; }
     .headline-primary, .headline-secondary { display: block; }
-    .headline-primary { font-size: 1.6rem; font-weight: 400; }
-    .headline-secondary { margin-top: 0.35rem; font-size: 1.24rem; font-weight: 900; line-height: 1.24; }
-    .copy { margin: 1rem auto 0; max-width: 36rem; color: var(--text-secondary); font-size: 0.875rem; line-height: 1.625; text-wrap: pretty; }
-    .socials { position: fixed; right: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom)); left: 1rem; z-index: 30; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+    .headline-primary { font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 400; letter-spacing: -0.025em; }
+    .headline-secondary { margin-top: 0.5rem; font-size: clamp(1.1rem, 4vw, 1.6rem); font-weight: 700; line-height: 1.24; letter-spacing: -0.02em; }
+    .headline-accent { color: var(--brand-primary); font-style: italic; }
+    .headline-underline { position: relative; white-space: nowrap; }
+    .headline-underline::after { content: ""; position: absolute; left: 4%; right: 4%; bottom: 4px; height: 7px; background: oklch(0.705 0.213 47.604 / 0.25); z-index: -1; border-radius: 4px; }
+    .headline-chip { display: inline-block; background: var(--text-primary); color: var(--bg-surface); padding: 2px 12px 4px; border-radius: 999px; transform: rotate(-1.5deg); }
+    .divider { display: flex; align-items: center; gap: 8px; justify-content: center; margin: 1rem 0; }
+    .divider-line { flex: 1; height: 1px; background: var(--border-subtle); max-width: 60px; }
+    .divider-dot { width: 4px; height: 4px; background: var(--text-tertiary); border-radius: 50%; }
+    .copy { margin: 0 auto; max-width: 36rem; color: var(--text-secondary); font-size: 0.875rem; line-height: 1.625; text-wrap: pretty; }
+    .social-section { margin-top: 1.5rem; text-align: center; }
+    .social-label { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 0.75rem; }
+    .socials { display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
     .social-link { position: relative; display: inline-flex; width: 3.5rem; height: 3.5rem; align-items: center; justify-content: center; border: 1px solid color-mix(in oklch, var(--border-subtle) 60%, transparent); border-radius: 1rem; background: color-mix(in oklch, var(--bg-surface-alt) 70%, transparent); color: var(--text-primary); box-shadow: 0 8px 24px oklch(0.22 0.01 80 / 0.16); text-decoration: none; transition: transform 150ms ease, border-color 150ms ease, color 150ms ease; }
     .social-link:hover { transform: translateY(-0.125rem); border-color: color-mix(in oklch, var(--action-primary) 60%, transparent); color: var(--action-primary); }
     .social-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
@@ -158,25 +174,29 @@
     .auth-float-delay-3 { animation-delay: 2.4s; }
     .auth-fade-up { animation: auth-fade-up 520ms ease-out both; }
     .auth-glow-pulse { animation: auth-glow-pulse 7s ease-in-out infinite; }
-    @media (min-width: 640px) { .section { padding: 4rem 1.5rem; } .panel { padding-bottom: 7.5rem; } .content { padding-bottom: 0; } .message-frame { padding: 4.25rem 3.75rem 4.75rem; } .socials { position: absolute; right: auto; bottom: 1.5rem; left: 50%; transform: translateX(-50%); } .brand-logo { height: 4.5rem; } .headline-primary { font-size: 2.25rem; } .headline-secondary { font-size: 1.72rem; } .copy { font-size: 1rem; } }
-    @media (min-width: 768px) { .shape-orange { left: 1.5rem; top: 8rem; width: 8rem; height: 5rem; border-radius: 1.5rem; } .panel { padding: 2.5rem 2.5rem 8.5rem; } .socials { bottom: 2.5rem; } .brand-logo { height: 5rem; } .headline-primary { font-size: 1.875rem; } .headline-secondary { font-size: 1.45rem; } .avatar-maya { left: 2.5rem; top: 2.5rem; width: 3.5rem; height: 3.5rem; } .avatar-eli { right: 2.5rem; bottom: 2.5rem; width: 3.5rem; height: 3.5rem; } }
+    .reveal { opacity: 0; transform: translateY(10px); animation: rise 0.72s cubic-bezier(.2,.7,.2,1) forwards; }
+    .reveal.d1 { animation-delay: 0.06s; }
+    .reveal.d2 { animation-delay: 0.55s; }
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+    @media (min-width: 640px) { .section { padding: 4rem 1.5rem; } .panel { padding-bottom: 2.5rem; } .content { padding-bottom: 0; } .message-frame { padding: 4.25rem 3.75rem 4.75rem; } .brand-logo { height: 5rem; } .headline-primary { font-size: clamp(1.875rem, 4vw, 2.5rem); } .headline-secondary { font-size: clamp(1.45rem, 3vw, 1.8rem); } .copy { font-size: 1rem; } }
+    @media (min-width: 768px) { .shape-orange { left: 1.5rem; top: 8rem; width: 8rem; height: 5rem; border-radius: 1.5rem; } .panel { padding: 2.5rem; } .brand-logo { height: 5rem; } .headline-primary { font-size: 1.875rem; } .headline-secondary { font-size: 1.45rem; } .avatar-maya { left: 2.5rem; top: 2.5rem; width: 3.5rem; height: 3.5rem; } .avatar-eli { right: 2.5rem; bottom: 2.5rem; width: 3.5rem; height: 3.5rem; } }
     @media (min-width: 1024px) { .section { padding-left: 2.5rem; padding-right: 2.5rem; } .shape-violet { right: 4rem; bottom: 5rem; width: 10rem; height: 5rem; } }
-    @media (prefers-color-scheme: dark) { .base-gradient { background: linear-gradient(135deg, oklch(0.18 0.01 80), oklch(0.22 0.02 75) 46%, oklch(0.16 0.01 78)); } .glow-orange { background: oklch(0.705 0.213 47.604 / 0.14); } .glow-violet { background: oklch(0.541 0.281 293.009 / 0.20); } .glow-green { background: oklch(0.792 0.209 151.711 / 0.15); } .shape-orange, .shape-violet { box-shadow: none; } .page-grid { opacity: 0.08; background-image: linear-gradient(90deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px), linear-gradient(0deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px); } .panel { background: color-mix(in oklch, var(--bg-surface) 45%, transparent); box-shadow: 0 26px 72px oklch(0.05 0 0 / 0.36); } .panel-gradient { background: linear-gradient(150deg, oklch(0.95 0.01 90 / 0.08), transparent 50%, oklch(0.69 0.2 45 / 0.08)); } .panel-grid { opacity: 0.06; } .logo-light { display: none; } .logo-dark { display: block; } .social-link { background: color-mix(in oklch, var(--bg-surface) 65%, transparent); } .avatar { border-color: var(--border-default); background: var(--bg-surface); } }
+    @media (prefers-color-scheme: dark) { .base-gradient { background: linear-gradient(135deg, oklch(0.18 0.01 80), oklch(0.22 0.02 75) 46%, oklch(0.16 0.01 78)); } .glow-orange { background: oklch(0.705 0.213 47.604 / 0.14); } .glow-violet { background: oklch(0.541 0.281 293.009 / 0.20); } .glow-green { background: oklch(0.792 0.209 151.711 / 0.15); } .shape-orange, .shape-violet { box-shadow: none; } .page-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px), linear-gradient(0deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px); } .panel { background: color-mix(in oklch, var(--bg-surface) 45%, transparent); box-shadow: 0 26px 72px oklch(0.05 0 0 / 0.36); } .panel-gradient { background: linear-gradient(150deg, oklch(0.95 0.01 90 / 0.08), transparent 50%, oklch(0.69 0.2 45 / 0.08)); } .panel-grid { opacity: 0.04; } .logo-light { display: none; } .logo-dark { display: block; } .social-link { background: color-mix(in oklch, var(--bg-surface) 65%, transparent); } .avatar { border-color: var(--border-default); background: var(--bg-surface); } }
     html.dark .base-gradient { background: linear-gradient(135deg, oklch(0.18 0.01 80), oklch(0.22 0.02 75) 46%, oklch(0.16 0.01 78)); }
     html.dark .glow-orange { background: oklch(0.705 0.213 47.604 / 0.14); }
     html.dark .glow-violet { background: oklch(0.541 0.281 293.009 / 0.20); }
     html.dark .glow-green { background: oklch(0.792 0.209 151.711 / 0.15); }
     html.dark .shape-orange, html.dark .shape-violet { box-shadow: none; }
-    html.dark .page-grid { opacity: 0.08; background-image: linear-gradient(90deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px), linear-gradient(0deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px); }
+    html.dark .page-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px), linear-gradient(0deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px); }
     html.dark .panel { background: color-mix(in oklch, var(--bg-surface) 45%, transparent); box-shadow: 0 26px 72px oklch(0.05 0 0 / 0.36); }
     html.dark .panel-gradient { background: linear-gradient(150deg, oklch(0.95 0.01 90 / 0.08), transparent 50%, oklch(0.69 0.2 45 / 0.08)); }
-    html.dark .panel-grid { opacity: 0.06; }
+    html.dark .panel-grid { opacity: 0.04; }
     html.dark .logo-light { display: none; }
     html.dark .logo-dark { display: block; }
     html.dark .social-link { background: color-mix(in oklch, var(--bg-surface) 65%, transparent); }
     html.dark .social-link img { mix-blend-mode: normal; filter: invert(1) hue-rotate(180deg); }
     html.dark .avatar { border-color: var(--border-default); background: var(--bg-surface); }
-    @media (prefers-reduced-motion: reduce) { .auth-float, .auth-fade-up, .auth-glow-pulse, .social-link, .social-link::before, .social-link::after, .social-link svg, .social-link img { animation: none; transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .auth-float, .auth-fade-up, .auth-glow-pulse, .reveal, .live-dot, .social-link, .social-link::before, .social-link::after, .social-link svg, .social-link img { animation: none; transition: none; } .reveal { opacity: 1; transform: none; } }
   </style>
 </head>
 <body>
@@ -187,6 +207,9 @@
     <div class="float-element dot-1 rounded-full auth-float" aria-hidden="true"></div><div class="float-element dot-2 diamond auth-float auth-float-delay-1" aria-hidden="true"></div><div class="float-element dot-3 rounded-full auth-float auth-float-delay-2" aria-hidden="true"></div><div class="float-element dot-4 diamond auth-float auth-float-delay-3" aria-hidden="true"></div><div class="float-element dot-5 rounded-full auth-float auth-float-delay-1" aria-hidden="true"></div><div class="float-element dot-6 diamond auth-float auth-float-delay-2" aria-hidden="true"></div><div class="float-element dot-7 rounded-full auth-float auth-float-delay-3" aria-hidden="true"></div><div class="float-element dot-8 rounded-full auth-float" aria-hidden="true"></div>
     <section class="section">
       <div class="stage">
+        <div class="topbar reveal d1">
+          <span class="pill"><span class="live-dot"></span>Próximamente · 2026</span>
+        </div>
         <div class="panel auth-fade-up">
           <div class="panel-gradient" aria-hidden="true"></div><div class="panel-grid" aria-hidden="true"></div>
           <span class="avatar avatar-maya auth-float" aria-hidden="true"><img src="./assets/avatars/coming-soon-maya.svg" alt="" loading="lazy" /><span class="badge" style="background-color:#7C3AED">AI</span></span>
@@ -194,11 +217,18 @@
           <div class="content">
             <div class="message-frame">
               <span class="brand-logo"><img class="logo-light" src="./assets/brand/logo-horizontal.svg" alt="Peerlog" width="1500" height="750" /><img class="logo-dark" src="./assets/brand/logo-horizontal-dark.svg" alt="Peerlog" width="1500" height="750" /></span>
-              <div><h1><span class="headline-primary">El conocimiento práctico merece un lugar.</span><span class="headline-secondary">Peerlog lo está construyendo.</span></h1><p class="copy">Seguinos para no perderte el lanzamiento.</p></div>
+              <div>
+                <h1><span class="headline-primary">El <span class="headline-accent">conocimiento</span> práctico merece <span class="headline-underline">un lugar.</span></span><span class="headline-secondary">Peerlog lo está <span class="headline-chip">construyendo</span></span></h1>
+                <div class="divider" aria-hidden="true"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-dot"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+                <p class="copy">Seguinos para no perderte el lanzamiento.</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="socials"><a class="social-link" href="#" aria-label="Peerlog - Próximamente..." aria-disabled="true" data-tooltip="Próximamente..." onclick="return false;"><svg viewBox="311 311 400 400" fill="currentColor" aria-hidden="true"><path d="M492.1 377c-16.7 2.3-30.2 9.1-42.7 21.5-10.2 10.1-15.6 18.7-20.1 32-2.5 7.3-2.7 9.4-2.7 23 0 13.5.3 15.8 2.6 22.7 3.8 11.4 9.3 20.5 16.8 27.9 14.3 14.1 34 19.4 47.6 12.8 6.6-3.1 9.1-7.2 12-19 3.2-12.9 7.2-20.7 14.4-28 8.3-8.4 18.2-13 32-14.9 10.2-1.4 12.8-2.6 15.1-7.1 2.3-4.7 2.5-14.9.4-22.9-4.4-16.8-17.9-33.2-33.5-40.8-4.7-2.3-11-4.8-14-5.6-7.6-1.9-20.2-2.6-27.9-1.6m69.3 95c-19.3 5-36.1 19-40.4 33.7-2.1 6.9-.3 11 8.1 18.5 14.3 12.6 19.4 23.4 18.7 38.9-.4 8.3-.8 9.6-5.1 18.2-2.6 5-4.7 10.5-4.7 12 0 9.3 12.1 18.6 30 23.3 7.8 2.1 23.2 2.3 31 .5 6.4-1.6 18.1-6.7 23.6-10.5 15.2-10.3 26.9-28.4 31.1-48 1.8-8.5 1.3-24-1.2-33.1-7-26-28-46.9-54-53.5-10.3-2.6-27.1-2.7-37.1 0"/><path d="M411.5 505.9c-13.1 3.4-27.8 16.8-35.5 32.5-4.4 9-7 20.4-7 30.8 0 32 20.3 59.8 51.2 70.3 10.7 3.7 30.2 4.6 41.2 2.1 24.6-5.8 45.5-22.9 56-45.8 9.9-21.5 8.5-44.6-3.6-58.3-6.6-7.6-14.4-8.8-23-3.4-14.8 9-30.6 9.2-44.3.5-6.4-4.2-11.2-9.5-16.4-18.5-5.3-9-11-12.1-18.6-10.2"/></svg></a><a class="social-link" href="https://www.linkedin.com/company/peerlog-org/" target="_blank" rel="noreferrer noopener" aria-label="Seguir a Peerlog en LinkedIn" data-tooltip="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a class="social-link" href="#" aria-label="Seguir a Peerlog en Instagram" data-tooltip="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a><a class="social-link" href="#" aria-label="Seguir a Peerlog en X" data-tooltip="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a></div>
+        <div class="social-section reveal d2">
+          <div class="social-label">Donde estamos</div>
+          <div class="socials"><a class="social-link" href="#" aria-label="Peerlog - Próximamente..." aria-disabled="true" data-tooltip="Próximamente..." onclick="return false;"><svg viewBox="311 311 400 400" fill="currentColor" aria-hidden="true"><path d="M492.1 377c-16.7 2.3-30.2 9.1-42.7 21.5-10.2 10.1-15.6 18.7-20.1 32-2.5 7.3-2.7 9.4-2.7 23 0 13.5.3 15.8 2.6 22.7 3.8 11.4 9.3 20.5 16.8 27.9 14.3 14.1 34 19.4 47.6 12.8 6.6-3.1 9.1-7.2 12-19 3.2-12.9 7.2-20.7 14.4-28 8.3-8.4 18.2-13 32-14.9 10.2-1.4 12.8-2.6 15.1-7.1 2.3-4.7 2.5-14.9.4-22.9-4.4-16.8-17.9-33.2-33.5-40.8-4.7-2.3-11-4.8-14-5.6-7.6-1.9-20.2-2.6-27.9-1.6m69.3 95c-19.3 5-36.1 19-40.4 33.7-2.1 6.9-.3 11 8.1 18.5 14.3 12.6 19.4 23.4 18.7 38.9-.4 8.3-.8 9.6-5.1 18.2-2.6 5-4.7 10.5-4.7 12 0 9.3 12.1 18.6 30 23.3 7.8 2.1 23.2 2.3 31 .5 6.4-1.6 18.1-6.7 23.6-10.5 15.2-10.3 26.9-28.4 31.1-48 1.8-8.5 1.3-24-1.2-33.1-7-26-28-46.9-54-53.5-10.3-2.6-27.1-2.7-37.1 0"/><path d="M411.5 505.9c-13.1 3.4-27.8 16.8-35.5 32.5-4.4 9-7 20.4-7 30.8 0 32 20.3 59.8 51.2 70.3 10.7 3.7 30.2 4.6 41.2 2.1 24.6-5.8 45.5-22.9 56-45.8 9.9-21.5 8.5-44.6-3.6-58.3-6.6-7.6-14.4-8.8-23-3.4-14.8 9-30.6 9.2-44.3.5-6.4-4.2-11.2-9.5-16.4-18.5-5.3-9-11-12.1-18.6-10.2"/></svg></a><a class="social-link" href="https://www.linkedin.com/company/peerlog-org/" target="_blank" rel="noreferrer noopener" aria-label="Seguir a Peerlog en LinkedIn" data-tooltip="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a class="social-link" href="#" aria-label="Seguir a Peerlog en Instagram" data-tooltip="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a><a class="social-link" href="#" aria-label="Seguir a Peerlog en X" data-tooltip="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a></div>
+        </div>
       </div>
     </section>
   </main>
