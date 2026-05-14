@@ -20,6 +20,7 @@
   <meta name="description" content="Practical knowledge deserves a place. Peerlog is building it." />
   <meta name="keywords" content="Peerlog, practical knowledge, professional knowledge, applied learning, professional collaboration, knowledge sharing, professional community, learning platform" />
   <meta name="robots" content="index, follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="canonical" href="https://peerlog.org/" />
   <link rel="icon" type="image/png" href="./assets/brand/favicon.png" />
   <link rel="apple-touch-icon" href="./assets/brand/favicon.png" />
@@ -255,6 +256,7 @@
     html.light .avatar { border-color: var(--border-strong); background: color-mix(in oklch, var(--bg-surface) 80%, transparent); }
     @media (prefers-reduced-motion: reduce) { .auth-float, .auth-fade-up, .auth-glow-pulse, .reveal, .live-dot, .social-link, .social-link::before, .social-link::after, .social-link svg, .social-link img { animation: none; transition: none; } .reveal { opacity: 1; transform: none; } }
   </style>
+  <noscript><style>.toggles{display:none}</style></noscript>
 </head>
 <body>
   <main class="page">
@@ -295,10 +297,10 @@
         <div class="social-section reveal d2">
           <div class="social-label" data-i18n="socialLabel">Donde estamos</div>
           <div class="socials">
-            <a id="social-peerlog" class="social-link" href="#" aria-label="Peerlog - Próximamente..." aria-disabled="true" data-tooltip="Próximamente..." onclick="return false;"><svg viewBox="311 311 400 400" fill="currentColor" aria-hidden="true"><path d="M492.1 377c-16.7 2.3-30.2 9.1-42.7 21.5-10.2 10.1-15.6 18.7-20.1 32-2.5 7.3-2.7 9.4-2.7 23 0 13.5.3 15.8 2.6 22.7 3.8 11.4 9.3 20.5 16.8 27.9 14.3 14.1 34 19.4 47.6 12.8 6.6-3.1 9.1-7.2 12-19 3.2-12.9 7.2-20.7 14.4-28 8.3-8.4 18.2-13 32-14.9 10.2-1.4 12.8-2.6 15.1-7.1 2.3-4.7 2.5-14.9.4-22.9-4.4-16.8-17.9-33.2-33.5-40.8-4.7-2.3-11-4.8-14-5.6-7.6-1.9-20.2-2.6-27.9-1.6m69.3 95c-19.3 5-36.1 19-40.4 33.7-2.1 6.9-.3 11 8.1 18.5 14.3 12.6 19.4 23.4 18.7 38.9-.4 8.3-.8 9.6-5.1 18.2-2.6 5-4.7 10.5-4.7 12 0 9.3 12.1 18.6 30 23.3 7.8 2.1 23.2 2.3 31 .5 6.4-1.6 18.1-6.7 23.6-10.5 15.2-10.3 26.9-28.4 31.1-48 1.8-8.5 1.3-24-1.2-33.1-7-26-28-46.9-54-53.5-10.3-2.6-27.1-2.7-37.1 0"/><path d="M411.5 505.9c-13.1 3.4-27.8 16.8-35.5 32.5-4.4 9-7 20.4-7 30.8 0 32 20.3 59.8 51.2 70.3 10.7 3.7 30.2 4.6 41.2 2.1 24.6-5.8 45.5-22.9 56-45.8 9.9-21.5 8.5-44.6-3.6-58.3-6.6-7.6-14.4-8.8-23-3.4-14.8 9-30.6 9.2-44.3.5-6.4-4.2-11.2-9.5-16.4-18.5-5.3-9-11-12.1-18.6-10.2"/></svg></a>
+            <a id="social-peerlog" class="social-link" href="#" aria-label="Peerlog - Próximamente..." aria-disabled="true" tabindex="-1" data-tooltip="Próximamente..."><svg viewBox="311 311 400 400" fill="currentColor" aria-hidden="true"><path d="M492.1 377c-16.7 2.3-30.2 9.1-42.7 21.5-10.2 10.1-15.6 18.7-20.1 32-2.5 7.3-2.7 9.4-2.7 23 0 13.5.3 15.8 2.6 22.7 3.8 11.4 9.3 20.5 16.8 27.9 14.3 14.1 34 19.4 47.6 12.8 6.6-3.1 9.1-7.2 12-19 3.2-12.9 7.2-20.7 14.4-28 8.3-8.4 18.2-13 32-14.9 10.2-1.4 12.8-2.6 15.1-7.1 2.3-4.7 2.5-14.9.4-22.9-4.4-16.8-17.9-33.2-33.5-40.8-4.7-2.3-11-4.8-14-5.6-7.6-1.9-20.2-2.6-27.9-1.6m69.3 95c-19.3 5-36.1 19-40.4 33.7-2.1 6.9-.3 11 8.1 18.5 14.3 12.6 19.4 23.4 18.7 38.9-.4 8.3-.8 9.6-5.1 18.2-2.6 5-4.7 10.5-4.7 12 0 9.3 12.1 18.6 30 23.3 7.8 2.1 23.2 2.3 31 .5 6.4-1.6 18.1-6.7 23.6-10.5 15.2-10.3 26.9-28.4 31.1-48 1.8-8.5 1.3-24-1.2-33.1-7-26-28-46.9-54-53.5-10.3-2.6-27.1-2.7-37.1 0"/><path d="M411.5 505.9c-13.1 3.4-27.8 16.8-35.5 32.5-4.4 9-7 20.4-7 30.8 0 32 20.3 59.8 51.2 70.3 10.7 3.7 30.2 4.6 41.2 2.1 24.6-5.8 45.5-22.9 56-45.8 9.9-21.5 8.5-44.6-3.6-58.3-6.6-7.6-14.4-8.8-23-3.4-14.8 9-30.6 9.2-44.3.5-6.4-4.2-11.2-9.5-16.4-18.5-5.3-9-11-12.1-18.6-10.2"/></svg></a>
             <a id="social-linkedin" class="social-link" href="https://www.linkedin.com/company/peerlog-org/" target="_blank" rel="noreferrer noopener" aria-label="Seguir a Peerlog en LinkedIn" data-tooltip="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-            <a id="social-instagram" class="social-link" href="#" aria-label="Seguir a Peerlog en Instagram" data-tooltip="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
-            <a id="social-x" class="social-link" href="#" aria-label="Seguir a Peerlog en X" data-tooltip="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a>
+            <a id="social-instagram" class="social-link" href="#" aria-label="Peerlog en Instagram - Próximamente..." aria-disabled="true" tabindex="-1" data-tooltip="Próximamente..."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
+            <a id="social-x" class="social-link" href="#" aria-label="Peerlog en X - Próximamente..." aria-disabled="true" tabindex="-1" data-tooltip="Próximamente..."><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a>
           </div>
         </div>
       </div>
@@ -316,8 +318,8 @@
         socialLabel: 'Donde estamos',
         socialPeerlog: { label: 'Peerlog - Próximamente...', tooltip: 'Próximamente...' },
         socialLinkedin: { label: 'Seguir a Peerlog en LinkedIn', tooltip: 'LinkedIn' },
-        socialInstagram: { label: 'Seguir a Peerlog en Instagram', tooltip: 'Instagram' },
-        socialX: { label: 'Seguir a Peerlog en X', tooltip: 'X' },
+        socialInstagram: { label: 'Peerlog en Instagram - Próximamente...', tooltip: 'Próximamente...' },
+        socialX: { label: 'Peerlog en X - Próximamente...', tooltip: 'Próximamente...' },
         themeLabel: { light: 'Tema: claro', dark: 'Tema: oscuro', system: 'Tema: sistema' },
         langLabel: 'Switch to English',
         docTitle: 'Peerlog — pronto',
@@ -329,8 +331,8 @@
         socialLabel: 'Find us',
         socialPeerlog: { label: 'Peerlog — Coming soon...', tooltip: 'Coming soon...' },
         socialLinkedin: { label: 'Follow Peerlog on LinkedIn', tooltip: 'LinkedIn' },
-        socialInstagram: { label: 'Follow Peerlog on Instagram', tooltip: 'Instagram' },
-        socialX: { label: 'Follow Peerlog on X', tooltip: 'X' },
+        socialInstagram: { label: 'Peerlog on Instagram - Coming soon...', tooltip: 'Coming soon...' },
+        socialX: { label: 'Peerlog on X - Coming soon...', tooltip: 'Coming soon...' },
         themeLabel: { light: 'Theme: light', dark: 'Theme: dark', system: 'Theme: system' },
         langLabel: 'Cambiar a Español',
         docTitle: 'Peerlog — coming soon',
@@ -401,10 +403,6 @@
       document.getElementById('theme-btn').setAttribute('aria-label', t.themeLabel[pref]);
     }
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-      if (getThemePref() === 'system') root.setAttribute('data-theme-pref', 'system');
-    });
-
     document.getElementById('theme-btn').addEventListener('click', () => {
       const next = THEMES[(THEMES.indexOf(getThemePref()) + 1) % THEMES.length];
       setThemePref(next);
@@ -415,6 +413,10 @@
     });
 
     applyI18n(getLang());
+
+    ['social-peerlog', 'social-instagram', 'social-x'].forEach(id => {
+      document.getElementById(id)?.addEventListener('click', e => e.preventDefault());
+    });
   </script>
 </body>
 </html>

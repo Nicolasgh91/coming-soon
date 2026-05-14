@@ -1,0 +1,7 @@
+wrangler.jsonc
+pnpm-workspace.yaml
+.npmrc
+README.md
+LICENSE
+THIRD_PARTY_LICENSES.md
+docs/
