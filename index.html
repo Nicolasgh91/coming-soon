@@ -28,16 +28,16 @@
   <meta property="og:description" content="Practical knowledge deserves a place. Peerlog is building it." />
   <meta property="og:url" content="https://peerlog.org/" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://peerlog.org/assets/brand/og-image-v2.webp" />
-  <meta property="og:image:secure_url" content="https://peerlog.org/assets/brand/og-image-v2.webp" />
-  <meta property="og:image:type" content="image/webp" />
-  <meta property="og:image:width" content="1910" />
-  <meta property="og:image:height" content="1000" />
+  <meta property="og:image" content="https://peerlog.org/assets/brand/og-image-v3.png" />
+  <meta property="og:image:secure_url" content="https://peerlog.org/assets/brand/og-image-v3.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1512" />
+  <meta property="og:image:height" content="812" />
   <meta property="og:image:alt" content="Peerlog - Practical knowledge deserves a place. Peerlog is building it." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Peerlog - Practical knowledge deserves a place. Peerlog is building it." />
   <meta name="twitter:description" content="Practical knowledge deserves a place. Peerlog is building it." />
-  <meta name="twitter:image" content="https://peerlog.org/assets/brand/og-image-v2.webp" />
+  <meta name="twitter:image" content="https://peerlog.org/assets/brand/og-image-v3.png" />
   <meta name="twitter:image:alt" content="Peerlog - Practical knowledge deserves a place. Peerlog is building it." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -150,10 +150,7 @@
     .dot-8 { bottom: 16%; right: 10%; width: 0.75rem; height: 0.75rem; background: oklch(0.491 0.27 292.581 / 0.30); }
     .section { position: relative; z-index: 10; display: flex; min-height: 100vh; width: 100%; max-width: 64rem; align-items: center; margin: 0 auto; padding: 2rem 1rem; }
     .stage { position: relative; width: 100%; display: flex; flex-direction: column; }
-    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 10px; }
-    .pill { display: inline-flex; align-items: center; gap: 6px; background: color-mix(in oklch, var(--bg-surface) 80%, transparent); border: 1px solid color-mix(in oklch, var(--border-subtle) 70%, transparent); border-radius: 999px; padding: 5px 10px 5px 8px; font-size: 11px; font-weight: 500; color: var(--text-secondary); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-    .live-dot { width: 6px; height: 6px; background: var(--brand-primary); border-radius: 50%; animation: live-pulse 1.8s ease-in-out infinite; flex-shrink: 0; }
-    @keyframes live-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+    .topbar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 1rem; gap: 10px; }
     .toggles { display: flex; gap: 4px; background: color-mix(in oklch, var(--bg-surface) 80%, transparent); border: 1px solid color-mix(in oklch, var(--border-subtle) 70%, transparent); border-radius: 999px; padding: 4px; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
     .toggle-btn { appearance: none; background: transparent; border: none; color: var(--text-primary); width: 36px; height: 30px; border-radius: 999px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: "Geist", sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.15s ease; padding: 0; }
     .toggle-btn:hover { background: color-mix(in oklch, var(--border-subtle) 60%, transparent); }
@@ -254,7 +251,7 @@
     html.light .social-link { background: color-mix(in oklch, var(--bg-surface-alt) 70%, transparent); }
     html.light .social-link img { mix-blend-mode: normal; filter: none; }
     html.light .avatar { border-color: var(--border-strong); background: color-mix(in oklch, var(--bg-surface) 80%, transparent); }
-    @media (prefers-reduced-motion: reduce) { .auth-float, .auth-fade-up, .auth-glow-pulse, .reveal, .live-dot, .social-link, .social-link::before, .social-link::after, .social-link svg, .social-link img { animation: none; transition: none; } .reveal { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .auth-float, .auth-fade-up, .auth-glow-pulse, .reveal, .social-link, .social-link::before, .social-link::after, .social-link svg, .social-link img { animation: none; transition: none; } .reveal { opacity: 1; transform: none; } }
   </style>
   <noscript><style>.toggles{display:none}</style></noscript>
 </head>
@@ -267,7 +264,6 @@
     <section class="section">
       <div class="stage">
         <div class="topbar reveal d1">
-          <span class="pill"><span class="live-dot"></span><span data-i18n="status">Próximamente · 2026</span></span>
           <div class="toggles" role="group" aria-label="Preferencias">
             <button type="button" class="toggle-btn toggle-theme" id="theme-btn" aria-label="Tema: sistema">
               <svg class="theme-icon icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -285,7 +281,7 @@
           <span class="avatar avatar-eli auth-float auth-float-delay-3" aria-hidden="true"><img src="./assets/avatars/coming-soon-eli.svg" alt="" loading="lazy" /><span class="badge" style="background-color:#E11D48">QA</span></span>
           <div class="content">
             <div class="message-frame">
-              <span class="brand-logo"><img class="logo-light" src="./assets/brand/logo-horizontal.svg" alt="Peerlog" width="1500" height="750" /><img class="logo-dark" src="./assets/brand/logo-horizontal-dark.svg" alt="Peerlog" width="1500" height="750" /></span>
+              <span class="brand-logo"><img class="logo-light" src="./assets/brand/logo-horizontal.png" alt="Peerlog" width="1568" height="784" /><img class="logo-dark" src="./assets/brand/logo-horizontal-dark.png" alt="Peerlog" width="1568" height="784" /></span>
               <div>
                 <h1 data-i18n-html="headline"><span class="headline-primary">El <span class="headline-accent">conocimiento</span> práctico merece <span class="headline-underline">un lugar.</span></span><span class="headline-secondary">Peerlog lo está <span class="headline-chip">construyendo</span></span></h1>
                 <div class="divider" aria-hidden="true"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-dot"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
@@ -312,7 +308,6 @@
     const THEMES = ['system', 'light', 'dark'];
     const dict = {
       es: {
-        status: 'Próximamente · 2026',
         headline: '<span class="headline-primary">El <span class="headline-accent">conocimiento</span> práctico merece <span class="headline-underline">un lugar.</span></span><span class="headline-secondary">Peerlog lo está <span class="headline-chip">construyendo</span></span>',
         tagline: 'Seguinos para no perderte el lanzamiento.',
         socialLabel: 'Donde estamos',
@@ -325,7 +320,6 @@
         docTitle: 'Peerlog — pronto',
       },
       en: {
-        status: 'Coming soon · 2026',
         headline: '<span class="headline-primary">Practical <span class="headline-accent">knowledge</span> deserves <span class="headline-underline">a place.</span></span><span class="headline-secondary">Peerlog is <span class="headline-chip">building it</span></span>',
         tagline: 'Follow us so you don’t miss the launch.',
         socialLabel: 'Find us',
