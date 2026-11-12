@@ -169,9 +169,27 @@
     .panel-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.72 0.03 84) 1px, transparent 1px), linear-gradient(0deg, oklch(0.72 0.03 84) 1px, transparent 1px); background-size: 36px 36px; }
     .content { position: relative; z-index: 10; display: flex; max-width: 46rem; flex-direction: column; align-items: center; margin: 0 auto; padding-bottom: 0; text-align: center; }
     .message-frame { position: relative; z-index: 10; display: flex; width: 100%; max-width: 42rem; flex-direction: column; align-items: center; gap: 1.75rem; padding: 2rem 0.75rem; }
-    .brand-logo { position: relative; display: inline-flex; height: 5rem; width: auto; flex-shrink: 0; overflow: hidden; }
-    .brand-logo img { height: 100%; width: auto; object-fit: contain; }
-    .logo-dark { display: none; }
+    .brand-logo {
+      --brand-logo-height: 3.5rem; /* mobile; 5rem from 640px (single override below) */
+      /* icon height / font-size; coupled to the wordmark metrics, change both together */
+      --logo-mark-ratio: 1.25;
+      /* coupled to assets/brand/logo-mark.svg viewBox; TODO: derive from the asset if the mark is ever replaced */
+      --logo-mark-aspect: 286 / 268;
+      position: relative; display: inline-flex; align-items: center; gap: .28em; flex-shrink: 0;
+      height: var(--brand-logo-height);
+      font-size: calc(var(--brand-logo-height) / var(--logo-mark-ratio));
+      overflow: visible; color: var(--text-primary);
+    }
+    .brand-logo__mark {
+      height: calc(1em * var(--logo-mark-ratio)); aspect-ratio: var(--logo-mark-aspect); flex: none;
+      background-color: #7008E7; /* violeta del isotipo (logos-v2/Social_Icon_Light.png) */
+      mask: url("./assets/brand/logo-mark.svg") center / contain no-repeat;
+      -webkit-mask: url("./assets/brand/logo-mark.svg") center / contain no-repeat;
+    }
+    .brand-logo__word {
+      font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.24; font-optical-sizing: none; font-variation-settings: "opsz" 28; color: inherit;
+    }
     h1 { margin: 0; color: var(--text-primary); font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 400; line-height: 1.18; text-wrap: balance; }
     .headline-primary, .headline-secondary { display: block; }
     .headline-primary { font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 400; letter-spacing: -0.025em; }
@@ -217,10 +235,10 @@
     .reveal.d1 { animation-delay: 0.06s; }
     .reveal.d2 { animation-delay: 0.55s; }
     @keyframes rise { to { opacity: 1; transform: translateY(0); } }
-    @media (min-width: 640px) { .section { padding: 4rem 1.5rem; } .panel { padding-bottom: 2.5rem; } .content { padding-bottom: 0; } .message-frame { padding: 4.25rem 3.75rem 4.75rem; } .brand-logo { height: 5rem; } .headline-primary { font-size: clamp(1.875rem, 4vw, 2.5rem); } .headline-secondary { font-size: clamp(1.45rem, 3vw, 1.8rem); } .copy { font-size: 1rem; } }
-    @media (min-width: 768px) { .shape-orange { left: 1.5rem; top: 8rem; width: 8rem; height: 5rem; border-radius: 1.5rem; } .panel { padding: 2.5rem; } .brand-logo { height: 5rem; } .headline-primary { font-size: 1.875rem; } .headline-secondary { font-size: 1.45rem; } .avatar-maya { left: 2.5rem; top: 2.5rem; width: 3.5rem; height: 3.5rem; } .avatar-eli { right: 2.5rem; bottom: 2.5rem; width: 3.5rem; height: 3.5rem; } }
+    @media (min-width: 640px) { .brand-logo { --brand-logo-height: 5rem; } .section { padding: 4rem 1.5rem; } .panel { padding-bottom: 2.5rem; } .content { padding-bottom: 0; } .message-frame { padding: 4.25rem 3.75rem 4.75rem; } .headline-primary { font-size: clamp(1.875rem, 4vw, 2.5rem); } .headline-secondary { font-size: clamp(1.45rem, 3vw, 1.8rem); } .copy { font-size: 1rem; } }
+    @media (min-width: 768px) { .shape-orange { left: 1.5rem; top: 8rem; width: 8rem; height: 5rem; border-radius: 1.5rem; } .panel { padding: 2.5rem; } .headline-primary { font-size: 1.875rem; } .headline-secondary { font-size: 1.45rem; } .avatar-maya { left: 2.5rem; top: 2.5rem; width: 3.5rem; height: 3.5rem; } .avatar-eli { right: 2.5rem; bottom: 2.5rem; width: 3.5rem; height: 3.5rem; } }
     @media (min-width: 1024px) { .section { padding-left: 2.5rem; padding-right: 2.5rem; } .shape-violet { right: 4rem; bottom: 5rem; width: 10rem; height: 5rem; } }
-    @media (prefers-color-scheme: dark) { .base-gradient { background: linear-gradient(135deg, oklch(0.18 0.01 80), oklch(0.22 0.02 75) 46%, oklch(0.16 0.01 78)); } .glow-orange { background: oklch(0.705 0.213 47.604 / 0.14); } .glow-violet { background: oklch(0.541 0.281 293.009 / 0.20); } .glow-green { background: oklch(0.792 0.209 151.711 / 0.15); } .shape-orange, .shape-violet { box-shadow: none; } .page-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px), linear-gradient(0deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px); } .panel { background: color-mix(in oklch, var(--bg-surface) 45%, transparent); box-shadow: 0 26px 72px oklch(0.05 0 0 / 0.36); } .panel-gradient { background: linear-gradient(150deg, oklch(0.95 0.01 90 / 0.08), transparent 50%, oklch(0.69 0.2 45 / 0.08)); } .panel-grid { opacity: 0.04; } .logo-light { display: none; } .logo-dark { display: block; } .social-link { background: color-mix(in oklch, var(--bg-surface) 65%, transparent); } .avatar { border-color: var(--border-default); background: var(--bg-surface); } }
+    @media (prefers-color-scheme: dark) { .base-gradient { background: linear-gradient(135deg, oklch(0.18 0.01 80), oklch(0.22 0.02 75) 46%, oklch(0.16 0.01 78)); } .glow-orange { background: oklch(0.705 0.213 47.604 / 0.14); } .glow-violet { background: oklch(0.541 0.281 293.009 / 0.20); } .glow-green { background: oklch(0.792 0.209 151.711 / 0.15); } .shape-orange, .shape-violet { box-shadow: none; } .page-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px), linear-gradient(0deg, oklch(0.84 0.01 80 / 0.55) 1px, transparent 1px); } .panel { background: color-mix(in oklch, var(--bg-surface) 45%, transparent); box-shadow: 0 26px 72px oklch(0.05 0 0 / 0.36); } .panel-gradient { background: linear-gradient(150deg, oklch(0.95 0.01 90 / 0.08), transparent 50%, oklch(0.69 0.2 45 / 0.08)); } .panel-grid { opacity: 0.04; } .social-link { background: color-mix(in oklch, var(--bg-surface) 65%, transparent); } .avatar { border-color: var(--border-default); background: var(--bg-surface); } }
     html.dark .base-gradient { background: linear-gradient(135deg, oklch(0.18 0.01 80), oklch(0.22 0.02 75) 46%, oklch(0.16 0.01 78)); }
     html.dark .glow-orange { background: oklch(0.705 0.213 47.604 / 0.14); }
     html.dark .glow-violet { background: oklch(0.541 0.281 293.009 / 0.20); }
@@ -230,8 +248,6 @@
     html.dark .panel { background: color-mix(in oklch, var(--bg-surface) 45%, transparent); box-shadow: 0 26px 72px oklch(0.05 0 0 / 0.36); }
     html.dark .panel-gradient { background: linear-gradient(150deg, oklch(0.95 0.01 90 / 0.08), transparent 50%, oklch(0.69 0.2 45 / 0.08)); }
     html.dark .panel-grid { opacity: 0.04; }
-    html.dark .logo-light { display: none; }
-    html.dark .logo-dark { display: block; }
     html.dark .social-link { background: color-mix(in oklch, var(--bg-surface) 65%, transparent); }
     html.dark .social-link img { mix-blend-mode: normal; filter: invert(1) hue-rotate(180deg); }
     html.dark .avatar { border-color: var(--border-default); background: var(--bg-surface); }
@@ -246,8 +262,6 @@
     html.light .panel { background: color-mix(in oklch, var(--bg-surface) 60%, transparent); box-shadow: 0 24px 64px oklch(0.22 0.01 80 / 0.12); }
     html.light .panel-gradient { background: linear-gradient(150deg, oklch(0.97 0.02 90 / 0.35), transparent 48%, oklch(0.74 0.13 72 / 0.14)); }
     html.light .panel-grid { opacity: 0.05; background-image: linear-gradient(90deg, oklch(0.72 0.03 84) 1px, transparent 1px), linear-gradient(0deg, oklch(0.72 0.03 84) 1px, transparent 1px); }
-    html.light .logo-light { display: block; }
-    html.light .logo-dark { display: none; }
     html.light .social-link { background: color-mix(in oklch, var(--bg-surface-alt) 70%, transparent); }
     html.light .social-link img { mix-blend-mode: normal; filter: none; }
     html.light .avatar { border-color: var(--border-strong); background: color-mix(in oklch, var(--bg-surface) 80%, transparent); }
@@ -281,7 +295,7 @@
           <span class="avatar avatar-eli auth-float auth-float-delay-3" aria-hidden="true"><img src="./assets/avatars/coming-soon-eli.svg" alt="" loading="lazy" /><span class="badge" style="background-color:#E11D48">QA</span></span>
           <div class="content">
             <div class="message-frame">
-              <span class="brand-logo"><img class="logo-light" src="./assets/brand/logo-horizontal.png" alt="Peerlog" width="1100" height="276" /><img class="logo-dark" src="./assets/brand/logo-horizontal-dark.png" alt="Peerlog" width="1099" height="265" /></span>
+              <span class="brand-logo" role="img" aria-label="Peerlog"><span class="brand-logo__mark" aria-hidden="true"></span><span class="brand-logo__word" aria-hidden="true">Peerlog</span></span>
               <div>
                 <h1 data-i18n-html="headline"><span class="headline-primary">El <span class="headline-accent">conocimiento</span> práctico merece <span class="headline-underline">un lugar.</span></span><span class="headline-secondary">Peerlog lo está <span class="headline-chip">construyendo</span></span></h1>
                 <div class="divider" aria-hidden="true"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-dot"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
