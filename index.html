@@ -131,7 +131,8 @@
     body { min-height: 100%; margin: 0; background: var(--bg-canvas); color: var(--text-primary); font-family: "Geist", Inter, "Inter Fallback", system-ui, sans-serif; }
     ::selection { background: var(--selection-bg); }
     .headline-accent::selection { color: var(--text-primary); }
-    h1, .copy, .social-label { cursor: var(--cursor-highlighter); }
+    /* Text boxes hug their content: selection gaps and the highlighter cursor never spill into empty space */
+    .headline-primary, .headline-secondary, .copy, .social-label { width: fit-content; margin-inline: auto; cursor: var(--cursor-highlighter); }
     .page { position: relative; min-height: 100vh; overflow: hidden; background: var(--bg-canvas); color: var(--text-primary); }
     .background { pointer-events: none; position: absolute; inset: 0; }
     .base-gradient { position: absolute; inset: 0; background: linear-gradient(135deg, oklch(0.97 0.01 85), oklch(0.95 0.02 80) 45%, oklch(0.99 0.01 90)); }
